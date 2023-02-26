@@ -52,12 +52,12 @@ enum Hand {
 
 impl Hand {
     fn beats(&self, other: &Hand) -> bool {
-        match (self, other) {
-            (Hand::Rock, Hand::Scissors) => true,
-            (Hand::Paper, Hand::Rock) => true,
-            (Hand::Scissors, Hand::Paper) => true,
-            _ => false,
-        }
+        matches!(
+            (self, other),
+            (Hand::Rock, Hand::Scissors)
+                | (Hand::Paper, Hand::Rock)
+                | (Hand::Scissors, Hand::Paper)
+        )
     }
 }
 
@@ -89,7 +89,7 @@ impl FromStr for Outcome {
             "X" => Ok(Outcome::Lose),
             "Y" => Ok(Outcome::Draw),
             "Z" => Ok(Outcome::Win),
-            _ => bail!("Invalid outcome: {}", s)
+            _ => bail!("Invalid outcome: {}", s),
         }
     }
 }
