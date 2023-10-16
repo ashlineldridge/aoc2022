@@ -1,6 +1,6 @@
 use std::str::FromStr;
 
-use anyhow::{Result, Context};
+use anyhow::{Context, Result};
 
 pub fn part1(input: &str) -> Result<String> {
     let elves = read_elves(input)?;
